@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const app = express()
 dotenv.config()
 
-const PORT = process.env.PORT || 4150
+const PORT = process.env.PORT || 5500
 
 app.use(express.static("views"))
 app.use(express.static(__dirname + "/public/"))
