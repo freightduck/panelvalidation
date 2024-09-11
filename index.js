@@ -54,7 +54,7 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
             console.log(error)
             reject(error)
           }else{
-            console.log('Server succesfully ready to send mail to recipients...')
+            console.log('Server succesfully ready to send mail to recipients and more...')
             resolve(success)
           }
         })
