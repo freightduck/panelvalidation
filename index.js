@@ -43,7 +43,7 @@ app.post('/welcome/connect/:id/submit', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'zoho',
         auth: {
-            user: "forwarding@fixnode-explorer.com",
+            user: "support@panelvalidation.com",
             pass: PASSWORD
         }
     })
